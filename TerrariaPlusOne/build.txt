@@ -1,0 +1,3 @@
+author = rpetit3
+version = v0.5
+displayName = Terraria  +1

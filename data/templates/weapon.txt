@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace $modname.Items.Weapons
+{
+    public class ${class} : ModItem
+    {
+        public override bool Autoload(ref string name, ref string texture, IList<EquipType> equips)
+        {
+            texture = "${modname}/Items/Weapons/${class}";
+            return true;
+        }
+
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            item.name = "${name}";
+            item.damage = ${damage};
+            item.melee = ${melee};
+            item.width = ${width};
+            item.height = ${height};
+            item.useTime = ${delay};
+            item.useAnimation = ${animation};
+            item.useStyle = ${style};
+            item.knockBack = ${knockback}f;
+            item.value = ${sell_price}; // Value is in copper
+            item.rare = ${rarity};
+            item.useSound = ${sound};
+            item.autoReuse = ${auto_swing};
+            item.scale = ${scale}f;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            ${ingredients}
+            ${stations}
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
+}
