@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,6 +33,7 @@ namespace TerrariaPlusOne.Items.Weapons
             item.useSound = 1;
             item.autoReuse = false;
             item.scale = 1.1f;
+            item.toolTip = "'It's way more bloodier this time!'";
         }
 
         public override void AddRecipes()
@@ -42,6 +44,24 @@ namespace TerrariaPlusOne.Items.Weapons
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
+        }
+
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            Color color = new Color();
+            int dust = Dust.NewDust(
+                new Vector2(hitbox.X, hitbox.Y),
+                hitbox.Width + 5,
+                hitbox.Height + 5,
+                DustID.Blood,
+                (player.velocity.X * 0.2f) + (player.direction * 6),
+                player.velocity.Y * 0.2f,
+                100,
+                color,
+                1.5f
+            );
+            Main.dust[dust].noGravity = true;
+            Main.dust[dust].noLight = false;
         }
     }
 }

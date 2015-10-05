@@ -50,7 +50,17 @@ namespace TerrariaPlusOne.Items.Weapons
         {
             for(int k = 0; k < 2; k++) {
                 Color color = new Color();
-                int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width+5, hitbox.Height+5, DustID.Fire, (player.velocity.X * 0.2f) + (player.direction * 6), player.velocity.Y * 0.2f, 100, color, 2.5f);
+                int dust = Dust.NewDust(
+                    new Vector2(hitbox.X, hitbox.Y),
+                    hitbox.Width + 5,
+                    hitbox.Height + 5,
+                    DustID.Fire,
+                    (player.velocity.X * 0.2f) + (player.direction * 6),
+                    player.velocity.Y * 0.2f,
+                    100,
+                    color,
+                    2.5f
+                );
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].noLight = false;
             }

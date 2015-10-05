@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -43,6 +44,33 @@ namespace TerrariaPlusOne.Items.Weapons
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
+        }
+
+
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            Color color = new Color();
+            int dust = Dust.NewDust(
+                new Vector2(hitbox.X, hitbox.Y),
+                hitbox.Width + 5,
+                hitbox.Height + 5,
+                DustID.GrassBlades,
+                (player.velocity.X * 0.2f) + (player.direction * 5),
+                player.velocity.Y * 0.2f,
+                100,
+                color,
+                1.5f
+            );
+            Main.dust[dust].noGravity = true;
+            Main.dust[dust].noLight = false;
+        }
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+        {
+            if(Main.rand.Next(2) == 0)
+            {
+                target.AddBuff(BuffID.Poisoned, 500);
+            }
         }
     }
 }
